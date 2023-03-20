@@ -5,6 +5,7 @@ import { CssBaseline } from "@mui/material";
 import { Fragment } from "react";
 import { MenuList } from "./modules/components/menu-list/menu-list.component";
 import { MenuEdit } from "./modules/components/menu-edit/menu-edit.component";
+import { MenuCreate } from "./modules/components/menu-create/menu-create.component";
 
 export const App = () => {
   const [dataProvider, setDataProvider] = useState<DataProvider<string> | null>(
@@ -29,7 +30,12 @@ export const App = () => {
     <Fragment>
       <CssBaseline />
       <Admin dataProvider={dataProvider}>
-        <Resource name="menu" list={MenuList} edit={MenuEdit} />
+        <Resource
+          name="menu"
+          list={MenuList}
+          create={MenuCreate}
+          edit={MenuEdit}
+        />
       </Admin>
     </Fragment>
   );
