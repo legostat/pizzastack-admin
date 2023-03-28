@@ -6,6 +6,8 @@ import { Fragment } from "react";
 import { MenuList } from "@app/modules/components/menu-list/menu-list.component";
 import { MenuEdit } from "@app/modules/components/menu-edit/menu-edit.component";
 import { MenuCreate } from "@app/modules/components/menu-create/menu-create.component";
+import { authProvider } from "@app/core/auth-provider";
+import { apolloClient } from "@app/core/apollo-client";
 
 export const App = () => {
   const [dataProvider, setDataProvider] = useState<DataProvider<string> | null>(
@@ -15,7 +17,7 @@ export const App = () => {
   useEffect(() => {
     const buildDataProvider = async () => {
       const dp = await buildHasuraProvider({
-        clientOptions: { uri: "http://localhost:8080/v1/graphql" },
+        client: apolloClient,
       });
       setDataProvider(() => dp);
     };
@@ -29,7 +31,11 @@ export const App = () => {
   return (
     <Fragment>
       <CssBaseline />
-      <Admin dataProvider={dataProvider}>
+      <Admin
+        dataProvider={dataProvider}
+        authProvider={authProvider}
+        requireAuth
+      >
         <Resource
           name="menu"
           list={MenuList}
