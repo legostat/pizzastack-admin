@@ -3,9 +3,9 @@ import buildHasuraProvider from "ra-data-hasura";
 import { Admin, DataProvider, Loading, Resource } from "react-admin";
 import { CssBaseline } from "@mui/material";
 import { Fragment } from "react";
-import { MenuList } from "./modules/components/menu-list/menu-list.component";
-import { MenuEdit } from "./modules/components/menu-edit/menu-edit.component";
-import { MenuCreate } from "./modules/components/menu-create/menu-create.component";
+import { MenuList } from "@app/modules/components/menu-list/menu-list.component";
+import { MenuEdit } from "@app/modules/components/menu-edit/menu-edit.component";
+import { MenuCreate } from "@app/modules/components/menu-create/menu-create.component";
 
 export const App = () => {
   const [dataProvider, setDataProvider] = useState<DataProvider<string> | null>(
