@@ -8,6 +8,8 @@ import { MenuEdit } from "@app/modules/components/menu-edit/menu-edit.component"
 import { MenuCreate } from "@app/modules/components/menu-create/menu-create.component";
 import { authProvider } from "@app/core/auth-provider";
 import { apolloClient } from "@app/core/apollo-client";
+import { theme } from "@app/core/theme";
+import { i18nProvider } from "@app/core/i18n";
 
 export const App = () => {
   const [dataProvider, setDataProvider] = useState<DataProvider<string> | null>(
@@ -34,6 +36,8 @@ export const App = () => {
       <Admin
         dataProvider={dataProvider}
         authProvider={authProvider}
+        i18nProvider={i18nProvider}
+        theme={theme}
         requireAuth
       >
         <Resource
