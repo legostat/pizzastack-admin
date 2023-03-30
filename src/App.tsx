@@ -45,6 +45,7 @@ export const App = () => {
           list={MenuList}
           create={MenuCreate}
           edit={MenuEdit}
+          options={{ label: "Меню" }}
         />
       </Admin>
     </Fragment>
