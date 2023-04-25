@@ -41,7 +41,6 @@ export const authProvider = {
     const { data } = await apolloClient.query<AdminGetMeQuery>({
       query: AdminGetMeQueryGql,
     });
-    console.log("📢[auth-provider.ts:42]: data: ", data);
     return Promise.resolve({
       id: data.adminGetMe!.id,
       fullName: data.adminGetMe!.username,
