@@ -1,20 +1,23 @@
 import { FC } from "react";
 import axios, { AxiosError } from "axios";
-import { InputProps, useNotify } from "react-admin";
+import { InputProps, useInput, useNotify } from "react-admin";
 import { CloudinaryInputUi } from "@app/common/components/cloudinary-input-ui/cloudinary-input-ui.component";
 import { useCloudinarySignatureQuery } from "@app/core/types";
 import { CloudinaryUploadDto } from "@app/common/components/cloudinary-input/cloudinary-upload.dto";
-import { useController } from "react-hook-form";
 
-export const CloudinaryInput: FC<InputProps> = ({ label, source }) => {
+export const CloudinaryInput: FC<InputProps> = (props) => {
+  const { source, label } = props;
+
   const computedLabel: string = String(label) ?? source;
-  const { data: cloudSignature, loading } = useCloudinarySignatureQuery();
+  const { data: cloudSignature, loading } = useCloudinarySignatureQuery({
+    fetchPolicy: "network-only",
+  });
 
   const notify = useNotify();
 
   const {
     field: { onChange, value },
-  } = useController({ name: source });
+  } = useInput(props);
 
   const onImageSelected = async (image: File) => {
     if (!cloudSignature?.cloudinarySignature) {
